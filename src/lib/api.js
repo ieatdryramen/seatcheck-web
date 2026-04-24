@@ -111,7 +111,15 @@ export const api = {
 
   // --- Identify ---
   identify: ({ ocrText, imageBase64 } = {}) =>
-    req("/api/identify", { method: "POST", body: { ocrText, imageBase64 }, authenticated: false })
+    req("/api/identify", { method: "POST", body: { ocrText, imageBase64 }, authenticated: false }),
+
+  // --- Install check (Claude Vision) ---
+  checkInstall: ({ mode, imageBase64, mediaType, seatId, childWeightLb, childHeightIn, childAgeMonths }) =>
+    req("/api/check-install", {
+      method: "POST",
+      authenticated: false,
+      body: { mode, imageBase64, mediaType, seatId, childWeightLb, childHeightIn, childAgeMonths }
+    })
 };
 
 // Helper — expiration status computed client-side for seats without server enrichment
